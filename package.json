@@ -1,0 +1,59 @@
+{
+  "name": "template",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "platform": "browser",
+  "engines": {
+    "node": ">=14"
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js",
+    "./*": "./dist/components/*/index.js",
+    "./styles": "./dist/bundle.css",
+    "./styles/*": "./dist/components/*/index.css"
+  },
+  "scripts": {
+    "export": "tsmodule build",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint --fix",
+    "pretest": "yarn build",
+    "test": "ava",
+    "prepublishOnly": "yarn test && yarn export"
+  },
+  "devDependencies": {
+    "@tsmodule/react": "^12.0.0",
+    "@tsmodule/tsmodule": "^42.6.0",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.23",
+    "@types/react-dom": "^18.0.7",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "autoprefixer": "^10.4.14",
+    "ava": "^5.2.0",
+    "cssnano": "^6.0.0",
+    "eslint": "^8.0.1",
+    "eslint-config-next": "^13.3.0",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.32.2",
+    "next": "^13.3.0",
+    "postcss": "^8.4.21",
+    "postcss-import": "^15.1.0",
+    "tailwindcss": "^3.3.1",
+    "typescript": "^5.0.4"
+  },
+  "style": "dist/bundle.css",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
