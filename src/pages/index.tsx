@@ -1,7 +1,10 @@
 import Head from "next/head";
-import { useSpell } from "../components/Test/useSpell";
+import { useSpell } from "../lib/useSpell";
 
 export default function Home () {
+  const spellResult = useSpell("green text in large font");
+  console.log({ spellResult });
+
   return (
     <>
       <Head>
@@ -11,18 +14,11 @@ export default function Home () {
       </Head>
 
       <main>
-        <span className={useSpell("green text in large font")}>
+        <span>
+          {/* <span className={useSpell("green text in large font")}> */}
           hello world
         </span>
       </main>
     </>
   );
 }
-
-export const getInitialProps = async () => {
-  const cacheRequest = await fetch("/spellcraft.json");
-  const spellCache = await cacheRequest.json();
-  return {
-    spellCache
-  };
-};

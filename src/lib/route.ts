@@ -1,13 +1,16 @@
-import { existsSync, readFileSync, writeFileSync } from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Configuration, OpenAIApi } from "openai";
-import { resolve } from "path";
+import { readCache, updateCache } from "./cache";
 
 const openai: OpenAIApi = new OpenAIApi(
   new Configuration({
     apiKey: process.env.OPENAI_API_KEY
   })
 );
+
+export const config = {
+  runtime: "nodejs"
+};
 
 export const english2TailwindClassNames = async (english: string) => {
   const gptRes = await openai.createCompletion({
@@ -22,31 +25,19 @@ export const english2TailwindClassNames = async (english: string) => {
   return gptRes.data.choices[0].text;
 };
 
-export const config = {
-  runtime: "nodejs"
-};
-
-export default async function handler (
+export async function SpellcraftRoute (
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const { english } = req.body;
-
-  const cachePath = resolve("public", "spellcraft.json");
-  const cacheExists = existsSync(cachePath);
-  if (!cacheExists) {
-    writeFileSync(cachePath, "{}");
-  }
-
-  const cacheFile = readFileSync(cachePath, "utf8");
-  const spellCache: Record<string, string> = JSON.parse(cacheFile);
 
   if (english === undefined) {
     res.status(400).json({ error: "No English Specified" });
     return;
   }
 
-  const cached = spellCache[english];
+  const cache = readCache();
+  const cached = cache[english];
   if (cached !== undefined) {
     res.status(200).json({ classNames: cached });
     return;
@@ -58,12 +49,7 @@ export default async function handler (
     return;
   }
 
-  spellCache[english] = newClassNames;
-
-  writeFileSync(
-    cachePath,
-    JSON.stringify(spellCache)
-  );
+  updateCache({ [english]: newClassNames });
 
   res.status(200).json({
     classNames: newClassNames

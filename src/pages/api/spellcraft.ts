@@ -1,1 +1,3 @@
-export { default } from "../../components/Test/spellcraftRoute";
+import { SpellcraftRoute } from "../../lib/route";
+
+export default SpellcraftRoute;

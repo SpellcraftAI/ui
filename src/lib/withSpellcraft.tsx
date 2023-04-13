@@ -1,7 +1,11 @@
+/**
+ * @fileoverview - IGNORE THIS FILE UNTIL THE MANUAL DEMO WORKS
+ */
+
 /* eslint-disable no-lone-blocks */
 import type { AppContext, AppProps } from "next/app";
 import App from "next/app";
-import SpellContext from "./SpellCacheContext";
+import { SpellCacheContext } from "./context";
 
 type SpellcraftAppProps = AppProps & {
   spellCache: Record<string, string>
@@ -9,9 +13,9 @@ type SpellcraftAppProps = AppProps & {
 
 export const withSpellcraft = (UserApp: any) => {
   const appWithProvider = (props: SpellcraftAppProps) => (
-    <SpellContext.Provider value={{ spellCache: props.spellCache }}>
+    <SpellCacheContext.Provider value={{ spellCache: props.spellCache }}>
       <UserApp {...props} />
-    </SpellContext.Provider>
+    </SpellCacheContext.Provider>
   );
 
   appWithProvider.getInitialProps = async (appContext: AppContext) => {

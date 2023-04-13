@@ -4,6 +4,6 @@ export interface SpellCacheArgs {
   spellCache: Record<string, string>
 }
 
-export default createContext<SpellCacheArgs>({
+export const SpellCacheContext = createContext<SpellCacheArgs>({
   spellCache: {}
 });
