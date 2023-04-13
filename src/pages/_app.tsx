@@ -2,13 +2,14 @@ import "../index.css";
 
 import type { AppProps } from "next/app";
 import { StrictMode } from "react";
+// import { withSpellcraft } from "../components/Test/withSpellcraft";
 
-function App ({ Component, pageProps }: AppProps) {
+export const App = ({ Component, pageProps }: AppProps) => {
   return (
     <StrictMode>
       <Component {...pageProps} />
     </StrictMode>
   );
-}
+};
 
 export default App;

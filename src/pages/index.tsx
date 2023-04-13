@@ -1,9 +1,5 @@
 import Head from "next/head";
-
-import { CardGrid } from "../components/CardGrid";
-import { Footer } from "../components/Footer";
-import { GetStarted } from "../components/GetStarted";
-import { Welcome } from "../components/Welcome";
+import { useSpell } from "../components/Test/useSpell";
 
 export default function Home () {
   return (
@@ -15,12 +11,18 @@ export default function Home () {
       </Head>
 
       <main>
-        <Welcome />
-        <GetStarted />
-        <CardGrid />
+        <span className={useSpell("green text in large font")}>
+          hello world
+        </span>
       </main>
-
-      <Footer />
     </>
   );
 }
+
+export const getInitialProps = async () => {
+  const cacheRequest = await fetch("/spellcraft.json");
+  const spellCache = await cacheRequest.json();
+  return {
+    spellCache
+  };
+};
