@@ -4,37 +4,46 @@
  * Fetch requests should be made within getInitialProps() or
  * getServerSideProps() and passed to the page as props, not on the client.
  */
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { SpellCacheContext } from "./context";
+import { tw } from "twind";
 
 export const useSpell = (english: string): string => {
-  // const [classNames, setClassNames] = useState("");
-  // const english = strings.join(" ");
   const { spellCache } = useContext(SpellCacheContext);
   console.log({ english, spellCache });
 
-  // useEffect(() => {
-  //   void (async () => {
-  //     if (cache[english] !== undefined) {
-  //       setClassNames(cache[english]);
-  //     } else {
-  //       const response = await fetch(
-  //         "/api/spellcraft",
-  //         {
-  //           method: "POST",
-  //           headers: {
-  //             "Content-Type": "application/json"
-  //           },
-  //           body: JSON.stringify({ english })
-  //         }
-  //       );
+  /**
+   * Developer experience - generate new spell on the fly.
+   */
+  useEffect(
+    () => {
+      if (process?.env?.NODE_ENV !== "development") {
+        return;
+      }
 
-  //       const { classNames } = await response.json();
-  //       setClassNames(classNames);
-  //     }
-  //   })();
-  // }, [english, cache]);
+      void (async () => {
+        if (spellCache?.[english] === undefined) {
+          const response = await fetch(
+            "/api/spellcraft",
+            {
+              method: "POST",
+              body: new URLSearchParams({ english })
+            }
+          );
 
-  // return tw`${classNames}`;
-  return "test-class-name";
+          const { classNames } = await response.json();
+          console.log({ classNames });
+        }
+      })();
+    },
+    [english, spellCache]
+  );
+
+  const classNames = spellCache?.[english];
+  if (classNames === undefined) {
+    return "";
+  }
+
+  console.log({ classNames });
+  return tw`${classNames}`;
 };

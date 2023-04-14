@@ -7,7 +7,7 @@ import type { AppContext, AppProps } from "next/app";
 import App from "next/app";
 import { SpellCacheContext } from "./context";
 
-type SpellcraftAppProps = AppProps & {
+export interface SpellcraftAppProps extends AppProps {
   spellCache: Record<string, string>
 };
 

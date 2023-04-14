@@ -1,8 +1,21 @@
 import Head from "next/head";
 import { useSpell } from "../lib/useSpell";
+import { SpellCacheContext } from "../lib/context";
+import { readCache } from "../lib/cache";
+import { type NextPage } from "next";
 
-export default function Home () {
-  const spellResult = useSpell("green text in large font");
+export const withSpellcraftTest = (Page: NextPage): NextPage => {
+  const UserPage = ({ spellCache, ...props }: any) => (
+    <SpellCacheContext.Provider value={{ spellCache }}>
+      <Page {...props} />
+    </SpellCacheContext.Provider>
+  );
+
+  return UserPage;
+};
+
+export function Home () {
+  const spellResult = useSpell("red text in small font");
   console.log({ spellResult });
 
   return (
@@ -14,11 +27,23 @@ export default function Home () {
       </Head>
 
       <main>
-        <span>
-          {/* <span className={useSpell("green text in large font")}> */}
+        <span className={spellResult}>
           hello world
         </span>
       </main>
     </>
   );
 }
+
+export default withSpellcraftTest(Home);
+
+export const getStaticProps = async (): Promise<any> => {
+  const spellCache = readCache();
+  console.log("index.getStaticProps", { spellCache });
+
+  return {
+    props: {
+      spellCache
+    }
+  };
+};
