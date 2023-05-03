@@ -3,7 +3,7 @@ import { useSpell } from "../client";
 import { withStylesCache } from "../server";
 
 export default function Home () {
-  const styles = useSpell("yellow text in large font");
+  const styles = useSpell("dark red text in large font");
 
   return (
     <>

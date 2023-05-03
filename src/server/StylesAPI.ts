@@ -13,6 +13,8 @@ export async function StylesAPI (
     throw new Error("This API only available in development.");
   }
 
+  console.log({ body: JSON.stringify(req.body) });
+
   const { english } = req.body;
 
   if (english === undefined) {
