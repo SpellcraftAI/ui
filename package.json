@@ -24,9 +24,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "pretest": "yarn build",
+    "pretest": "pnpm build",
     "test": "ava",
-    "prepublishOnly": "yarn test && yarn export"
+    "prepublishOnly": "pnpm test && pnpm export"
   },
   "devDependencies": {
     "@tsmodule/react": "^12.0.0",
