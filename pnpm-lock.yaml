@@ -22,8 +22,8 @@ devDependencies:
     specifier: ^12.0.0
     version: 12.0.0
   '@tsmodule/tsmodule':
-    specifier: ^44.3.0
-    version: 44.3.0
+    specifier: ^44.4.0
+    version: 44.4.0
   '@types/node':
     specifier: ^18.16.3
     version: 18.16.3
@@ -556,8 +556,8 @@ packages:
       react-dom: 17.0.2(react@17.0.2)
     dev: true
 
-  /@tsmodule/tsmodule@44.3.0:
-    resolution: {integrity: sha512-8qkwNqx1R33UozCs/byrVT6eZj+w06T34V7xktwGslxz123LDj6d41OEnLelzvuZ4y1tsLCuMKO3kOXIpzaXTg==}
+  /@tsmodule/tsmodule@44.4.0:
+    resolution: {integrity: sha512-8t6uLAQqzWiPcNQbzYV8BqWZfpb8Dskoifp5T2NSRQMQnI3zHYFPaJ32AbvPHrJ+GZP+BB4CxmR9iJi5U0y2ew==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:

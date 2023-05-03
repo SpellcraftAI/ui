@@ -8,8 +8,7 @@ export async function StylesAPI (
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { env } = await import("process");
-  if (env.NODE_ENV !== "development") {
+  if (process.env.NODE_ENV !== "development") {
     throw new Error("This API only available in development.");
   }
 
