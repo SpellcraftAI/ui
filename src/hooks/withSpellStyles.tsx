@@ -1,12 +1,15 @@
-import type { NextPage } from "next";
+import type { AppProps } from "next/app";
 import { SpellCacheContext } from "../lib/context";
 
-export const withSpellStyles = (Page: NextPage): NextPage => {
-  const UserPage = ({ spellCache, ...props }: any) => (
-    <SpellCacheContext.Provider value={{ spellCache }}>
-      <Page {...props} />
-    </SpellCacheContext.Provider>
-  );
+export const withSpellStyles = (MyApp: React.ComponentType<AppProps>) => {
+  const UserApp = ({ Component, pageProps, ...props }: AppProps & { spellCache: any }) => {
+    const { spellCache } = pageProps;
+    return (
+      <SpellCacheContext.Provider value={{ spellCache }}>
+        <MyApp Component={Component} pageProps={pageProps} {...props} />
+      </SpellCacheContext.Provider>
+    );
+  };
 
-  return UserPage;
+  return UserApp;
 };

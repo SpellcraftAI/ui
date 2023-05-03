@@ -2,11 +2,10 @@
 import "../index.css";
 
 import { StrictMode } from "react";
-import withTwindApp from "@twind/next/app";
 import { type AppProps } from "next/app";
+import { withSpellStyles } from "../hooks";
 
 export const MyApp = ({ Component, pageProps }: AppProps) => {
-  // console.log("MyApp", { pageProps });
   return (
     <StrictMode>
       <Component {...pageProps} />
@@ -14,4 +13,4 @@ export const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default withTwindApp(MyApp);
+export default withSpellStyles(MyApp);

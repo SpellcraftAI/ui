@@ -1,10 +1,9 @@
 import Head from "next/head";
-import { useSpell, withSpellStyles } from "..";
+import { useSpell } from "../hooks";
 import { withStaticCache } from "../server";
 
-export function Home () {
-  const spellResult = useSpell("purple text in small font");
-  // console.log({ spellResult });
+export default function Home () {
+  const spellResult = useSpell("yellow text in small font");
 
   return (
     <>
@@ -23,18 +22,4 @@ export function Home () {
   );
 }
 
-export default withSpellStyles(Home);
-
 export const getStaticProps = withStaticCache();
-
-// export const getStaticProps: GetStaticProps = async (): Promise<any> => {
-//   const spellCache = readCache();
-//   console.log("index.getStaticProps", { spellCache });
-
-//   return {
-//     props: {
-//       a: 1,
-//       spellCache
-//     }
-//   };
-// };

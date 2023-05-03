@@ -1,9 +1,8 @@
 import type { GetStaticProps, GetStaticPropsContext } from "next";
 import { readCache } from "../lib";
 
-export const withStaticCache = (originalGetStaticProps?: GetStaticProps) => {
+export const withStaticCache = (originalGetStaticProps?: GetStaticProps): GetStaticProps => {
   const getStaticProps = async (context: GetStaticPropsContext) => {
-    // const { readCache } = await import("../lib/cache");
     const spellCache = readCache();
     console.log("withStaticCache", { spellCache });
 
@@ -15,10 +14,12 @@ export const withStaticCache = (originalGetStaticProps?: GetStaticProps) => {
       };
     }
 
-    const result = await originalGetStaticProps(context);
+    const result = await originalGetStaticProps(context) as any;
+    const originalProps = (result?.props) ?? {};
     return {
       ...result,
       props: {
+        ...originalProps,
         spellCache
       }
     };
