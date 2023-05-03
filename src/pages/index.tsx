@@ -8,7 +8,7 @@ export default function Home () {
   return (
     <>
       <Head>
-        <title>Style Spells - By Spellcraft</title>
+        <title>UI Spells - By Spellcraft</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

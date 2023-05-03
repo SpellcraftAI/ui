@@ -1,5 +1,5 @@
 <center>
-  <h1>Style Spells</h1>
+  <h1>UI Spells</h1>
 
   <b>GPT Tailwind Generator for Next.js</b>
 
@@ -23,8 +23,8 @@ the `useSpell()` hook, like so:
 
 ```tsx
 // src/pages/index.tsx
-import { useSpell } from "@spellcraft/styles/client";
-import { withStylesCache } from "@spellcraft/styles/server";
+import { useSpell } from "@spellcraft/ui/client";
+import { withStylesCache } from "@spellcraft/ui/server";
 
 export default function Home () {
   const styles = useSpell("purple text in small font");
@@ -46,13 +46,13 @@ used to fetch new styles and add them to the cache in dev mode.</sub>
 
 ### Setup
 
-You'll need to configure the following pages to use Style Spells:
+You'll need to configure the following pages to use UI Spells:
 
 1. `pages/_document.tsx`
 2. `pages/_app.tsx`
 3. `pages/api/spellcraft.ts`
 
-And for every page you use Style Spells, you'll need to ensure `getStaticProps`
+And for every page you use UI Spells, you'll need to ensure `getStaticProps`
 exists and is wrapped:
 
 ```ts
@@ -70,7 +70,7 @@ This adds support for SSR-compatible dynamic Tailwind with `@twind/next`.
 ```tsx
 // pages/_document.tsx
 
-import { withDocument } from "@spellcraft/styles/document";
+import { withDocument } from "@spellcraft/ui/document";
 export default withDocument();
 ```
 
@@ -84,7 +84,7 @@ This wraps your app with a cache provider and utilities from `@twind/next`.
 import { StrictMode } from "react";
 import { type AppProps } from "next/app";
 
-import { withApp } from "@spellcraft/styles/client";
+import { withApp } from "@spellcraft/ui/client";
 
 export const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -107,7 +107,7 @@ be loaded from the static JSON file at build-time only.
 ```ts
 // pages/api/spellcraft.ts
 
-import { StylesAPI } from "@spellcraft/styles/server";
+import { StylesAPI } from "@spellcraft/ui/server";
 export default StylesAPI;
 ```
 
