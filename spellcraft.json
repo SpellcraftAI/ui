@@ -3,5 +3,7 @@
   "green text in large font": "text-green-400 text-xl",
   "purple text in large font": "text-purple-400 text-lg",
   "grey text in large font": "text-gray-600 text-xl",
-  "yellow text in large font": "text-yellow-600 text-xl"
+  "yellow text in large font": "text-yellow-600 text-xl",
+  "dark green text in large font": "text-darkgreen-600 text-xl",
+  "dark red text in large font": "text-red-600 text-xl"
 }
