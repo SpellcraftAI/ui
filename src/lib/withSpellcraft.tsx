@@ -33,7 +33,7 @@ export const withSpellcraft = (UserApp: any) => {
       writeFileSync("spellcraft.json", "{}");
     }
 
-    const spellCache = JSON.parse(readFileSync("spellcraft.json", "utf8"));
+    const spellCache = JSON.parse(readFileSync("spellcraft.json", "utf8")) ?? {};
     return {
       ...appProps,
       spellCache

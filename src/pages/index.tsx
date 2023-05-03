@@ -15,7 +15,7 @@ export const withSpellcraftTest = (Page: NextPage): NextPage => {
 };
 
 export function Home () {
-  const spellResult = useSpell("red text in small font");
+  const spellResult = useSpell("purple text in small font");
   console.log({ spellResult });
 
   return (
