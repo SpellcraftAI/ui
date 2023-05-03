@@ -4,10 +4,14 @@ import { Configuration, OpenAIApi } from "openai";
 
 export const runtime = "nodejs";
 
-export async function SpellStylesAPI (
+export async function StylesAPI (
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (process.env.NODE_ENV !== "development") {
+    throw new Error("This API only available in development.");
+  }
+
   const { english } = req.body;
 
   if (english === undefined) {
@@ -51,5 +55,5 @@ const getTailwindClasses = async (english: string) => {
   });
 
   if (gptRes.status !== 200) return null;
-  return gptRes.data.choices[0].text;
+  return gptRes.data.choices[0].text?.trim();
 };

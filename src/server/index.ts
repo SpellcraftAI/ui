@@ -1,2 +1,2 @@
-export * from "./spellStylesAPI";
-export * from "./withStaticCache";
+export * from "./StylesAPI";
+export * from "./withStylesCache";

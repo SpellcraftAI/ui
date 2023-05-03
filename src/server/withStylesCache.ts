@@ -1,15 +1,15 @@
 import type { GetStaticProps, GetStaticPropsContext } from "next";
 import { readCache } from "../cache";
 
-export const withStaticCache = (originalGetStaticProps?: GetStaticProps): GetStaticProps => {
+export const withStylesCache = (originalGetStaticProps?: GetStaticProps): GetStaticProps => {
   const getStaticProps = async (context: GetStaticPropsContext) => {
-    const spellCache = readCache();
-    console.log("withStaticCache", { spellCache });
+    const stylesCache = readCache();
+    console.log("withStaticCache", { stylesCache });
 
     if (originalGetStaticProps == null) {
       return {
         props: {
-          spellCache
+          stylesCache
         }
       };
     }
@@ -20,7 +20,7 @@ export const withStaticCache = (originalGetStaticProps?: GetStaticProps): GetSta
       ...result,
       props: {
         ...originalProps,
-        spellCache
+        stylesCache
       }
     };
   };

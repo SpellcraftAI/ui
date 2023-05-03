@@ -1,3 +1,3 @@
-import { SpellStylesAPI } from "../../server";
+import { StylesAPI } from "../../server";
 
-export default SpellStylesAPI;
+export default StylesAPI;

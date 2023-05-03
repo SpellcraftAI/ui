@@ -3,7 +3,7 @@ import "../index.css";
 
 import { StrictMode } from "react";
 import { type AppProps } from "next/app";
-import { withSpellStyles } from "../client";
+import { withApp } from "../client";
 
 export const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
@@ -13,4 +13,4 @@ export const MyApp = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-export default withSpellStyles(MyApp);
+export default withApp(MyApp);

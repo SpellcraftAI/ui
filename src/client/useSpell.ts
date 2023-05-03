@@ -5,13 +5,12 @@
  * getServerSideProps() and passed to the page as props, not on the client.
  */
 import { useContext, useEffect, useState } from "react";
-import { SpellCacheContext } from "../cache/context";
+import { StylesCacheContext } from "../cache/context";
 import { tw } from "twind";
 
 export const useSpell = (english: string): string => {
-  const { spellCache } = useContext(SpellCacheContext);
-  const [classNames, setClassName] = useState(spellCache?.[english]);
-  // console.log({ english, spellCache });
+  const { stylesCache } = useContext(StylesCacheContext);
+  const [classNames, setClassName] = useState(stylesCache?.[english]);
 
   /**
    * Developer experience - generate new spell on the fly.
@@ -23,7 +22,7 @@ export const useSpell = (english: string): string => {
       }
 
       void (async () => {
-        if (spellCache?.[english] === undefined) {
+        if (stylesCache?.[english] === undefined) {
           console.log("[DEV] Generating new spell...");
           console.log(english);
 
@@ -42,7 +41,7 @@ export const useSpell = (english: string): string => {
         }
       })();
     },
-    [english, spellCache]
+    [english, stylesCache]
   );
 
   if (classNames === undefined) {

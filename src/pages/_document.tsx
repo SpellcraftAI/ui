@@ -1,3 +1,3 @@
-import { withSpellStylesDocument } from "../client/withSpellStylesDocument";
+import { withDocument } from "../document";
 
-export default withSpellStylesDocument();
+export default withDocument();

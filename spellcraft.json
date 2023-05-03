@@ -1,1 +1,5 @@
-{"red text in small font":" text-red-500 text-sm","green text in small font":" text-green-400 text-sm","purple text in small font":" text-purple-300 text-sm"}
+{
+  "red text in large font": "text-red-700 text-3xl",
+  "green text in large font": "text-green-400 text-xl",
+  "purple text in large font": "text-purple-400 text-lg"
+}

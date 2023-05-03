@@ -9,8 +9,12 @@ export const readCache = () => {
     writeFileSync(CACHE_PATH, "{}");
   }
 
-  const cacheFile = readFileSync(CACHE_PATH, "utf8") ?? "{}";
-  return JSON.parse(cacheFile);
+  const cacheFile = readFileSync(CACHE_PATH, "utf8");
+  if (cacheFile === "") {
+    return {};
+  } else {
+    return JSON.parse(cacheFile);
+  }
 };
 
 export const updateCache = (update: Record<string, string>) => {
@@ -19,6 +23,6 @@ export const updateCache = (update: Record<string, string>) => {
 
   writeFileSync(
     CACHE_PATH,
-    JSON.stringify(newCache)
+    JSON.stringify(newCache, null, 2)
   );
 };

@@ -1,5 +1,5 @@
 {
-  "name": "spell-styles",
+  "name": "@spellcraft/styles",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
@@ -10,11 +10,13 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
+    "document.js",
     "client.js",
     "server.js"
   ],
   "exports": {
     "./package.json": "./package.json",
+    "./document": "./document.js",
     "./client": "./client.js",
     "./server": "./server.js"
   },
