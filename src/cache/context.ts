@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 export interface StylesCacheArgs {
-  stylesCache: Record<string, string>
+  stylesCache: Record<string, any>
 }
 
 export const StylesCacheContext = createContext<StylesCacheArgs>({

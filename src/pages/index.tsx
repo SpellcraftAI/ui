@@ -3,7 +3,9 @@ import { useSpell } from "../client";
 import { withStylesCache } from "../server";
 
 export default function Home () {
-  const styles = useSpell("dark red text in large font");
+  const props = useSpell(
+    "dark green text in large font, shows alert dialog that says 'hello' on click"
+  );
 
   return (
     <>
@@ -13,7 +15,7 @@ export default function Home () {
       </Head>
 
       <main>
-        <span className={styles}>
+        <span {...props}>
           hello world
         </span>
       </main>

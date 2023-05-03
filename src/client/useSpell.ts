@@ -8,9 +8,9 @@ import { useContext, useEffect, useState } from "react";
 import { StylesCacheContext } from "../cache/context";
 import { tw } from "twind";
 
-export const useSpell = (english: string): string => {
+export const useSpell = (english: string) => {
   const { stylesCache } = useContext(StylesCacheContext);
-  const [classNames, setClassName] = useState(stylesCache?.[english]);
+  const [props, setProps] = useState(stylesCache?.[english]);
 
   /**
    * Developer experience - generate new spell on the fly.
@@ -34,19 +34,28 @@ export const useSpell = (english: string): string => {
             }
           );
 
-          const { classNames } = await response.json();
-          console.log("[DEV] Generated classNames:", classNames);
+          const freshProps = await response.json();
+          console.log("[DEV] Generated props:", freshProps);
 
-          setClassName(classNames);
+          setProps(freshProps);
         }
       })();
     },
     [english, stylesCache]
   );
 
-  if (classNames === undefined) {
-    return "";
+  if (props === undefined) {
+    return {};
   }
 
-  return tw`${classNames}`;
+  const { className = "" } = props ?? {};
+  console.log({ className });
+
+  const finalProps = {
+    ...props,
+    className: tw`${className}`
+  };
+
+  console.log({ finalProps });
+  return finalProps;
 };
