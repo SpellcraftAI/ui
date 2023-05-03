@@ -11,8 +11,11 @@
   "files": [
     "dist",
     "document.js",
+    "document.d.ts",
     "client.js",
-    "server.js"
+    "client.d.ts",
+    "server.js",
+    "server.d.ts"
   ],
   "exports": {
     "./package.json": "./package.json",
