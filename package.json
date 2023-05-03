@@ -24,18 +24,17 @@
     "./server": "./server.js"
   },
   "scripts": {
-    "export": "tsmodule build",
+    "export": "tsmodule build --raw-process-env",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "pretest": "pnpm build",
     "test": "ava",
-    "prepublishOnly": "pnpm test && pnpm export"
+    "prepublishOnly": "pnpm export && pnpm test"
   },
   "devDependencies": {
     "@tsmodule/react": "^12.0.0",
-    "@tsmodule/tsmodule": "^44.3.0",
+    "@tsmodule/tsmodule": "^44.4.0",
     "@types/node": "^18.16.3",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.1",
