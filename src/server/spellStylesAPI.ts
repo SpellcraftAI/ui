@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { readCache, updateCache } from "../lib/cache";
+import { readCache, updateCache } from "../cache";
 import { Configuration, OpenAIApi } from "openai";
 
 export const runtime = "nodejs";
 
-export async function SpellStylesRoute (
+export async function SpellStylesAPI (
   req: NextApiRequest,
   res: NextApiResponse
 ) {
@@ -41,7 +41,7 @@ const OPENAI = new OpenAIApi(
   })
 );
 
-export const getTailwindClasses = async (english: string) => {
+const getTailwindClasses = async (english: string) => {
   const gptRes = await OPENAI.createCompletion({
     model: "text-davinci-003",
     prompt: `You are a Tailwind CSS classnames generator. The user will input English and you will output Tailwind CSS class names. For example, if the user inputs "I want a red button", you will output "bg-red-300". Do not use any newlines, just return the classnames immediately.\n\n

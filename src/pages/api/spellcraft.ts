@@ -1,3 +1,3 @@
-import { SpellStylesRoute } from "../../server/spellStylesRoute";
+import { SpellStylesAPI } from "../../server";
 
-export default SpellStylesRoute;
+export default SpellStylesAPI;

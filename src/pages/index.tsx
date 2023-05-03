@@ -1,9 +1,9 @@
 import Head from "next/head";
-import { useSpell } from "../hooks";
+import { useSpell } from "../client";
 import { withStaticCache } from "../server";
 
 export default function Home () {
-  const spellResult = useSpell("yellow text in small font");
+  const spellResult = useSpell("purple text in small font");
 
   return (
     <>

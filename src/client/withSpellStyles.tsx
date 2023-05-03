@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import { SpellCacheContext } from "../lib/context";
+import { SpellCacheContext } from "../cache/context";
 
 export const withSpellStyles = (MyApp: React.ComponentType<AppProps>) => {
   const UserApp = ({ Component, pageProps, ...props }: AppProps & { spellCache: any }) => {

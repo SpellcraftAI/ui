@@ -1,5 +1,5 @@
 import type { GetStaticProps, GetStaticPropsContext } from "next";
-import { readCache } from "../lib";
+import { readCache } from "../cache";
 
 export const withStaticCache = (originalGetStaticProps?: GetStaticProps): GetStaticProps => {
   const getStaticProps = async (context: GetStaticPropsContext) => {
