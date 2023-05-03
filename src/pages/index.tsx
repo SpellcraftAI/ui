@@ -1,18 +1,6 @@
 import Head from "next/head";
-import { useSpell } from "../lib/useSpell";
-import { SpellCacheContext } from "../lib/context";
-import { readCache } from "../lib/cache";
-import { type NextPage } from "next";
-
-export const withSpellcraftTest = (Page: NextPage): NextPage => {
-  const UserPage = ({ spellCache, ...props }: any) => (
-    <SpellCacheContext.Provider value={{ spellCache }}>
-      <Page {...props} />
-    </SpellCacheContext.Provider>
-  );
-
-  return UserPage;
-};
+import { type GetStaticProps, type GetStaticPropsContext } from "next";
+import { useSpell, withSpellStyles } from "../hooks";
 
 export function Home () {
   const spellResult = useSpell("purple text in small font");
@@ -35,15 +23,44 @@ export function Home () {
   );
 }
 
-export default withSpellcraftTest(Home);
+export default withSpellStyles(Home);
 
-export const getStaticProps = async (): Promise<any> => {
-  const spellCache = readCache();
-  console.log("index.getStaticProps", { spellCache });
+export const withStaticCache = (originalGetStaticProps?: GetStaticProps) => {
+  const getStaticProps = async (context: GetStaticPropsContext) => {
+    const { readCache } = await import("../lib/cache");
+    const spellCache = readCache();
+    console.log("withStaticCache", { spellCache });
 
-  return {
-    props: {
-      spellCache
+    if (originalGetStaticProps == null) {
+      return {
+        props: {
+          spellCache
+        }
+      };
     }
+
+    const result = await originalGetStaticProps(context);
+    return {
+      ...result,
+      props: {
+        spellCache
+      }
+    };
   };
+
+  return getStaticProps;
 };
+
+export const getStaticProps = withStaticCache();
+
+// export const getStaticProps: GetStaticProps = async (): Promise<any> => {
+//   const spellCache = readCache();
+//   console.log("index.getStaticProps", { spellCache });
+
+//   return {
+//     props: {
+//       a: 1,
+//       spellCache
+//     }
+//   };
+// };

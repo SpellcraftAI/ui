@@ -5,7 +5,7 @@
  * getServerSideProps() and passed to the page as props, not on the client.
  */
 import { useContext, useEffect, useState } from "react";
-import { SpellCacheContext } from "./context";
+import { SpellCacheContext } from "../lib/context";
 import { tw } from "twind";
 
 export const useSpell = (english: string): string => {
