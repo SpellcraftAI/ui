@@ -4,7 +4,6 @@ import { readCache } from "../cache";
 export const withStylesCache = (originalGetStaticProps?: GetStaticProps): GetStaticProps => {
   const getStaticProps = async (context: GetStaticPropsContext) => {
     const stylesCache = readCache();
-    console.log("withStaticCache", { stylesCache });
 
     if (originalGetStaticProps == null) {
       return {
