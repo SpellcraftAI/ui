@@ -4,13 +4,13 @@
  * Fetch requests should be made within getInitialProps() or
  * getServerSideProps() and passed to the page as props, not on the client.
  */
-import { useContext, useEffect } from "react";
-import { SpellCacheContext } from "./context";
+import { useContext, useEffect, useState } from "react";
+import { StylesCacheContext } from "../cache/context";
 import { tw } from "twind";
 
 export const useSpell = (english: string): string => {
-  const { spellCache } = useContext(SpellCacheContext);
-  console.log({ english, spellCache });
+  const { stylesCache } = useContext(StylesCacheContext);
+  const [classNames, setClassName] = useState(stylesCache?.[english]);
 
   /**
    * Developer experience - generate new spell on the fly.
@@ -22,7 +22,10 @@ export const useSpell = (english: string): string => {
       }
 
       void (async () => {
-        if (spellCache?.[english] === undefined) {
+        if (stylesCache?.[english] === undefined) {
+          console.log("[DEV] Generating new spell...");
+          console.log(english);
+
           const response = await fetch(
             "/api/spellcraft",
             {
@@ -32,18 +35,18 @@ export const useSpell = (english: string): string => {
           );
 
           const { classNames } = await response.json();
-          console.log({ classNames });
+          console.log("[DEV] Generated classNames:", classNames);
+
+          setClassName(classNames);
         }
       })();
     },
-    [english, spellCache]
+    [english, stylesCache]
   );
 
-  const classNames = spellCache?.[english];
   if (classNames === undefined) {
     return "";
   }
 
-  console.log({ classNames });
   return tw`${classNames}`;
 };

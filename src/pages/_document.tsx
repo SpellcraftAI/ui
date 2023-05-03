@@ -1,3 +1,3 @@
-import withTwindDocument from "@twind/next/document";
+import { withDocument } from "../document";
 
-export default withTwindDocument();
+export default withDocument();

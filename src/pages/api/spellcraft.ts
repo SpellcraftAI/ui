@@ -1,3 +1,3 @@
-import { SpellcraftRoute } from "../../lib/route";
+import { StylesAPI } from "../../server";
 
-export default SpellcraftRoute;
+export default StylesAPI;
