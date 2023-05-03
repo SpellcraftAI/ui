@@ -11,7 +11,7 @@ import { tw } from "twind";
 export const useSpell = (english: string): string => {
   const { spellCache } = useContext(SpellCacheContext);
   const [classNames, setClassName] = useState(spellCache?.[english]);
-  console.log({ english, spellCache });
+  // console.log({ english, spellCache });
 
   /**
    * Developer experience - generate new spell on the fly.
@@ -22,11 +22,11 @@ export const useSpell = (english: string): string => {
         return;
       }
 
-      console.log("DEV MODE: Generating new spell...");
-      console.log({ english });
-
       void (async () => {
         if (spellCache?.[english] === undefined) {
+          console.log("[DEV] Generating new spell...");
+          console.log(english);
+
           const response = await fetch(
             "/api/spellcraft",
             {
@@ -36,7 +36,7 @@ export const useSpell = (english: string): string => {
           );
 
           const { classNames } = await response.json();
-          console.log("API", { classNames });
+          console.log("[DEV] Generated classNames:", classNames);
 
           setClassName(classNames);
         }

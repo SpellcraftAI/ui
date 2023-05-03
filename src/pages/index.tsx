@@ -1,10 +1,10 @@
 import Head from "next/head";
-import { type GetStaticProps, type GetStaticPropsContext } from "next";
-import { useSpell, withSpellStyles } from "../hooks";
+import { useSpell, withSpellStyles } from "..";
+import { withStaticCache } from "../server";
 
 export function Home () {
   const spellResult = useSpell("purple text in small font");
-  console.log({ spellResult });
+  // console.log({ spellResult });
 
   return (
     <>
@@ -24,32 +24,6 @@ export function Home () {
 }
 
 export default withSpellStyles(Home);
-
-export const withStaticCache = (originalGetStaticProps?: GetStaticProps) => {
-  const getStaticProps = async (context: GetStaticPropsContext) => {
-    const { readCache } = await import("../lib/cache");
-    const spellCache = readCache();
-    console.log("withStaticCache", { spellCache });
-
-    if (originalGetStaticProps == null) {
-      return {
-        props: {
-          spellCache
-        }
-      };
-    }
-
-    const result = await originalGetStaticProps(context);
-    return {
-      ...result,
-      props: {
-        spellCache
-      }
-    };
-  };
-
-  return getStaticProps;
-};
 
 export const getStaticProps = withStaticCache();
 
