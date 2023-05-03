@@ -9,14 +9,14 @@
   },
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "client.js",
+    "server.js"
   ],
   "exports": {
     "./package.json": "./package.json",
-    ".": "./dist/index.js",
-    "./*": "./dist/components/*/index.js",
-    "./styles": "./dist/bundle.css",
-    "./styles/*": "./dist/components/*/index.css"
+    "./client": "./client.js",
+    "./server": "./server.js"
   },
   "scripts": {
     "export": "tsmodule build",
