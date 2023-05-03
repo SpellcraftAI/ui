@@ -1,3 +1,3 @@
-import withTwindDocument from "@twind/next/document";
+import { withSpellStylesDocument } from "../client/withSpellStylesDocument";
 
-export default withTwindDocument();
+export default withSpellStylesDocument();
