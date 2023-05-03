@@ -30,7 +30,7 @@ export const useSpell = (english: string): string => {
             "/api/spellcraft",
             {
               method: "POST",
-              body: new URLSearchParams({ english })
+              body: JSON.stringify({ english })
             }
           );
 
