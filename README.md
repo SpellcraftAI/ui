@@ -107,8 +107,8 @@ be loaded from the static JSON file at build-time only.
 ```ts
 // pages/api/spellcraft.ts
 
-import { SpellStylesAPI } from "@spellcraft/styles/server";
-export default SpellStylesAPI;
+import { StylesAPI } from "@spellcraft/styles/server";
+export default StylesAPI;
 ```
 
 That's it! 
