@@ -17,7 +17,7 @@ export const useSpell = (english: string): string => {
    */
   useEffect(
     () => {
-      if (process?.env?.NODE_ENV !== "development") {
+      if (process.env.NODE_ENV !== "development") {
         return;
       }
 
