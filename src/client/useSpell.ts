@@ -22,7 +22,10 @@ export const useSpell = (english: string): string => {
       }
 
       void (async () => {
-        if (stylesCache?.[english] === undefined) {
+        const cached = stylesCache?.[english];
+        if (cached !== undefined) {
+          setClassName(cached);
+        } else {
           console.log("[DEV] Generating new spell...");
           console.log(english);
 
