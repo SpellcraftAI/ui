@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
-export const CACHE_PATH = resolve("public", "spellcraft.json"); ;
+export const CACHE_PATH = resolve("spellcraft.json"); ;
 
 export const readCache = () => {
   const cacheExists = existsSync(CACHE_PATH);
@@ -10,7 +10,11 @@ export const readCache = () => {
   }
 
   const cacheFile = readFileSync(CACHE_PATH, "utf8");
-  return JSON.parse(cacheFile);
+  if (cacheFile === "") {
+    return {};
+  } else {
+    return JSON.parse(cacheFile);
+  }
 };
 
 export const updateCache = (update: Record<string, string>) => {
@@ -19,6 +23,6 @@ export const updateCache = (update: Record<string, string>) => {
 
   writeFileSync(
     CACHE_PATH,
-    JSON.stringify(newCache)
+    JSON.stringify(newCache, null, 2)
   );
 };
