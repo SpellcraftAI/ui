@@ -13,6 +13,10 @@ Use GPT-4 to generate Tailwind styles from natural language descriptions.
 Generated styles are saved to a JSON cache and injected into the application at
 build-time: No production fetch requests, no FOUC.
 
+### Demo
+
+Play with the `useSpell()` hook in a pre-configured Next.js project on [CodeSandbox](https://codesandbox.io/p/sandbox/ui-6uofyc?file=%2FREADME.md%3A10%2C17).
+
 ### Usage
 
 <sub>**IMPORTANT:** _You must set the `getStaticProps` export in order to load
